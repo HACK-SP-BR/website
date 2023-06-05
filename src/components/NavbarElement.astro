@@ -1,0 +1,7 @@
+---
+const { link, extraStyling } = Astro.props;
+---
+
+<li class="nav-item">
+    <a class="nav-link" style={extraStyling} href={link}><slot /></a>
+</li>
