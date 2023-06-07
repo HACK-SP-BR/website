@@ -17,7 +17,7 @@ const data = await response.json();
     <main data-bs-theme="dark">
         <img
             class="sao_paulo_bg"
-            src="https://images.unsplash.com/photo-1561592390-42c07289e9cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=875&q=80"
+            src="https://cloud-3vug65z7o-hack-club-bot.vercel.app/0sao_paulo_at_night_panoramic.jpg"
         />
         <div class="d-flex justify-content-center">
             <div class="title">
@@ -43,6 +43,24 @@ const data = await response.json();
                 <RSVP />
                 <AddGoogleCalendar />
             </div>
+        </div>
+
+        <div
+            style="overflow: hidden; display: flex; justify-content:space-evenly;"
+        >
+            <!-- Flags -->
+            <img
+                src="https://cloud-2oag4cwzo-hack-club-bot.vercel.app/0saopaulocityfg.png"
+                class="flag flag-1 d-flex"
+            />
+            <img
+                src="https://cloud-2oag4cwzo-hack-club-bot.vercel.app/1brazilfg.png"
+                class="flag flag-2 d-flex"
+            />
+            <img
+                src="https://cloud-2oag4cwzo-hack-club-bot.vercel.app/2saopaulostatefg.png"
+                class="flag flag-3 d-flex"
+            />
         </div>
 
         <div class="card m-5 details" id="event-details">
@@ -191,8 +209,7 @@ const data = await response.json();
                         flashID="more"
                         question={data["faq.question.more"]}
                         set:html={data["faq.answer.more"]}
-                    >
-                    </AccordionFlash>
+                    />
                 </div>
             </div>
         </div>
@@ -200,6 +217,13 @@ const data = await response.json();
 </Layout>
 
 <style>
+    .flag {
+        width: 192px;
+        height: 128px;
+        transform: rotate(90deg);
+        z-index: -1;
+    }
+
     @keyframes typewriter_1 {
         from {
             width: 0;
