@@ -1,0 +1,315 @@
+---
+import Layout from "../layouts/Layout.astro";
+import RSVP from "../components/RSVP.astro";
+import AddGoogleCalendar from "../components/AddGoogleCalendar.astro";
+import AccordionFlash from "../components/AccordionFlash.astro";
+import Translations from "../translations/translations.json";
+
+const response = await fetch(
+    `https://${Astro.url.host}/translations/${
+        Astro.url.searchParams.get("lang") || Translations[0]
+    }.json`
+);
+const data = await response.json();
+---
+
+<Layout>
+    <main data-bs-theme="dark">
+        <img
+            class="sao_paulo_bg"
+            src="https://cloud-3vug65z7o-hack-club-bot.vercel.app/0sao_paulo_at_night_panoramic.jpg"
+        />
+        <div class="d-flex justify-content-center">
+            <div class="title">
+                <h1 class="mono_bold">{data["hackathon.title"]}</h1>
+                <p class="desc" set:html={data["hackathon.desc"]} />
+                <br />
+                <p class="details">{data["event.basic.title"]}</p>
+                <ul class="details">
+                    <li>
+                        {data["hackathon.place.prompt"]}
+                        <b class="desc_underline"
+                            >{data["hackathon.place.answer"]}</b
+                        >
+                    </li>
+                    <li>
+                        {data["hackathon.date.prompt"]}
+                        <b class="desc_underline"
+                            >{data["hackathon.date.answer"]}</b
+                        >
+                    </li>
+                </ul>
+
+                <RSVP />
+                <AddGoogleCalendar />
+            </div>
+        </div>
+
+        <div
+            style="overflow: hidden; display: flex; justify-content:space-evenly;"
+        >
+            <!-- Flags -->
+            <img
+                src="https://cloud-2oag4cwzo-hack-club-bot.vercel.app/0saopaulocityfg.png"
+                class="flag flag-1 d-flex"
+            />
+            <img
+                src="https://cloud-2oag4cwzo-hack-club-bot.vercel.app/1brazilfg.png"
+                class="flag flag-2 d-flex"
+            />
+            <img
+                src="https://cloud-2oag4cwzo-hack-club-bot.vercel.app/2saopaulostatefg.png"
+                class="flag flag-3 d-flex"
+            />
+        </div>
+
+        <div class="card m-5 details" id="event-details">
+            <div class="card-header">{data["event.title"]}</div>
+            <div class="card-body">
+                <h5 class="card-title">
+                    {data["hackathon.title"]} | {data["event.card.title"]}
+                </h5>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col"
+                                >{data["event.card.questions.name"]}</th
+                            >
+                            <th scope="col"
+                                >{data["event.card.answers.name"]}</th
+                            >
+                        </tr>
+                        <tbody>
+                            <tr>
+                                <th scope="row"
+                                    >{data["event.card.qa.place"]}</th
+                                >
+                                <td class="desc_underline"
+                                    >{data["hackathon.place.answer"]}</td
+                                >
+                            </tr>
+                            <tr>
+                                <th scope="row">{data["event.card.qa.time"]}</th
+                                >
+                                <td class="desc_underline"
+                                    >{data["hackathon.date.answer"]}</td
+                                >
+                            </tr>
+                            <tr>
+                                <th scope="row"
+                                    >{data["event.card.qa.duration"]}</th
+                                >
+                                <td class="desc_underline"
+                                    >{data["hackathon.duration"]}</td
+                                >
+                            </tr>
+                            <tr>
+                                <th scope="row"
+                                    >{data["event.card.qa.age.min"]}</th
+                                >
+                                <td class="desc_underline"
+                                    >{data["hackathon.age.min"]}</td
+                                >
+                            </tr>
+                            <tr>
+                                <th scope="row"
+                                    >{data["event.card.qa.age.max"]}</th
+                                >
+                                <td class="desc_underline"
+                                    >{data["hackathon.age.max"]}</td
+                                >
+                            </tr>
+                            <tr>
+                                <th scope="row"
+                                    >{data["event.card.qa.beginner"]}</th
+                                >
+                                <td class="desc_underline"
+                                    >{data["event.card.qa.beginner.answer"]}</td
+                                >
+                            </tr>
+                        </tbody>
+                    </thead>
+                </table>
+                <RSVP />
+            </div>
+        </div>
+
+        <div class="card m-5 details" id="team">
+            <div class="card-header">{data["team.title"]}</div>
+            <div class="card-body">
+                <h5 class="card-title">
+                    {data["hackathon.title"]} | {data["team.card.title"]}
+                </h5>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">{data["team.card.name"]}</th>
+                            <th scope="col">{data["team.card.role"]}</th>
+                            <th scope="col">{data["team.card.country"]}</th>
+                        </tr>
+                        <tbody>
+                            <tr>
+                                <th scope="row">Lucas Honda</th>
+                                <td class="desc_underline"
+                                    >{data["team.role.main"]}</td
+                                >
+                                <td>{data["country.brazil"]}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Marios Mitsios</th>
+                                <td class="desc_underline"
+                                    >{data["team.role.site"]}</td
+                                >
+                                <td>{data["country.greece"]}</td>
+                            </tr>
+                        </tbody>
+                    </thead>
+                </table>
+            </div>
+        </div>
+
+        <div class="card m-5 details" id="faq">
+            <div class="card-header">{data["faq.title"]}</div>
+            <div class="card-body">
+                <h5 class="card-title">
+                    {data["hackathon.title"]} | {data["faq.title"]}
+                </h5>
+                <div>
+                    <!-- FAQ QUESTIONS -->
+                    <AccordionFlash
+                        section="faq"
+                        flashID="hackathon"
+                        question={data["faq.question.hackathon_intro"]}
+                        set:html={data["faq.answer.hackathon_intro"]}
+                    />
+
+                    <AccordionFlash
+                        section="faq"
+                        flashID="participate"
+                        question={data["faq.question.participate"]}
+                        set:html={data["faq.answer.participate"]}
+                    />
+
+                    <AccordionFlash
+                        section="faq"
+                        flashID="beginner"
+                        question={data["faq.question.beginner"]}
+                        set:html={data["faq.answer.beginner"]}
+                    />
+
+                    <AccordionFlash
+                        section="faq"
+                        flashID="payment"
+                        question={data["faq.question.payment"]}
+                        set:html={data["faq.answer.payment"]}
+                    />
+
+                    <AccordionFlash
+                        section="faq"
+                        flashID="more"
+                        question={data["faq.question.more"]}
+                        set:html={data["faq.answer.more"]}
+                    />
+                </div>
+            </div>
+        </div>
+    </main>
+</Layout>
+
+<style>
+    .flag {
+        width: 192px;
+        height: 128px;
+        transform: rotate(90deg);
+        z-index: -1;
+    }
+
+    @keyframes typewriter_1 {
+        from {
+            width: 0;
+        }
+        to {
+            width: 18rem;
+        }
+    }
+
+    @keyframes typewriter_2 {
+        from {
+            width: 0;
+        }
+        to {
+            width: 100%;
+        }
+    }
+
+    @keyframes first_cursor {
+        from {
+            border-right-color: rgba(17, 17, 17, 0.9);
+        }
+        to {
+            border-right-color: rgba(255, 255, 255, 0.8);
+        }
+    }
+
+    @keyframes second_cursor {
+        from {
+            border-right-color: rgba(17, 17, 17, 0.9);
+        }
+        to {
+            border-right-color: rgba(255, 255, 255, 0.8);
+        }
+    }
+
+    .mono_bold {
+        font-family: "JetBrains Mono", monospace;
+        font-weight: 800;
+        font-size: 64px;
+        overflow: hidden;
+        white-space: nowrap;
+
+        border-right: 2px solid rgba(17, 17, 17, 0.9);
+        animation: typewriter_1 1s steps(12) 1s 1 normal both,
+            first_cursor 900ms steps(12) 2s;
+    }
+
+    .desc {
+        font-family: "JetBrains Mono", monospace;
+        font-size: larger;
+        overflow: hidden;
+        white-space: nowrap;
+
+        border-right: 2px solid rgba(17, 17, 17, 0.9);
+        animation: typewriter_2 6s steps(48) 1s 1 normal both,
+            second_cursor 900ms steps(48) infinite;
+        -webkit-animation-delay: 1.5s;
+        animation-delay: 1.5s;
+    }
+
+    .details {
+        font-family: "JetBrains Mono", monospace;
+        font-size: larger;
+    }
+
+    .desc_underline {
+        font-style: italic;
+        text-decoration: underline;
+        text-underline-offset: 16%;
+        text-decoration-color: red;
+        text-decoration-thickness: 12%;
+    }
+
+    .title {
+        margin: 17.5%;
+    }
+
+    .sao_paulo_bg {
+        z-index: -1;
+        opacity: 12%;
+        position: absolute;
+        width: 100%;
+    }
+
+    .btn_txt {
+        font-family: "JetBrains Mono", monospace;
+    }
+</style>
