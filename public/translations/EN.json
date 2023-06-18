@@ -5,7 +5,7 @@
     "hackathon.place.answer": "PLACE_HERE",
     "hackathon.date.prompt": "Date:",
     "hackathon.date.answer": "DATE",
-    "hackathon.duration": "DURATION",
+    "hackathon.duration": "10 hours",
     "hackathon.age.min": 10,
     "hackathon.age.max": 18,
     "hackathon.beginner": "Yes!",
