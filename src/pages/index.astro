@@ -10,6 +10,7 @@ const response = await fetch(
         Astro.url.searchParams.get("lang") || Translations[0]
     }.json`
 );
+console.log(response);
 const data = await response.json();
 ---
 
@@ -40,10 +41,18 @@ const data = await response.json();
                     </li>
                 </ul>
 
-                <RSVP />
-                <AddGoogleCalendar />
+                <div class="d-flex justify-content-around m-2">
+                    <div class="m-2">
+                        <RSVP />
+                    </div>
+                    <div class="m-2">
+                        <AddGoogleCalendar />
+                    </div>
+                </div>
             </div>
         </div>
+
+        <br />
 
         <div
             style="overflow: hidden; display: flex; justify-content:space-evenly;"
@@ -224,13 +233,6 @@ const data = await response.json();
 </Layout>
 
 <style>
-    .flag {
-        width: 192px;
-        height: 128px;
-        transform: rotate(90deg);
-        z-index: -1;
-    }
-
     @keyframes typewriter_1 {
         from {
             width: 0;
@@ -271,30 +273,20 @@ const data = await response.json();
         font-family: "JetBrains Mono", monospace;
         font-weight: 800;
         font-size: 64px;
-        overflow: hidden;
-        white-space: nowrap;
-
-        border-right: 2px solid rgba(17, 17, 17, 0.9);
-        animation: typewriter_1 1s steps(12) 1s 1 normal both,
-            first_cursor 900ms steps(12) 2s;
     }
 
     .desc {
         font-family: "JetBrains Mono", monospace;
         font-size: larger;
-        overflow: hidden;
-        white-space: nowrap;
-
-        border-right: 2px solid rgba(17, 17, 17, 0.9);
-        animation: typewriter_2 6s steps(48) 1s 1 normal both,
-            second_cursor 900ms steps(48) infinite;
-        -webkit-animation-delay: 1.5s;
-        animation-delay: 1.5s;
     }
 
     .details {
         font-family: "JetBrains Mono", monospace;
-        font-size: larger;
+        font-size: small;
+    }
+
+    .title {
+        margin: 2.5%;
     }
 
     .desc_underline {
@@ -303,10 +295,6 @@ const data = await response.json();
         text-underline-offset: 16%;
         text-decoration-color: red;
         text-decoration-thickness: 12%;
-    }
-
-    .title {
-        margin: 17.5%;
     }
 
     .sao_paulo_bg {
@@ -318,5 +306,45 @@ const data = await response.json();
 
     .btn_txt {
         font-family: "JetBrains Mono", monospace;
+    }
+
+    .flag {
+        width: auto;
+        height: auto;
+        max-width: 25%;
+        max-height: 25%;
+        transform: rotate(90deg);
+        z-index: -1;
+    }
+
+    /* Desktop Only */
+    @media only screen and (min-width: 1025px) {
+        .mono_bold {
+            overflow: hidden;
+            white-space: nowrap;
+
+            border-right: 2px solid rgba(17, 17, 17, 0.9);
+            animation: typewriter_1 1s steps(12) 1s 1 normal both,
+                first_cursor 900ms steps(12) 2s;
+        }
+
+        .desc {
+            overflow: hidden;
+            white-space: nowrap;
+
+            border-right: 2px solid rgba(17, 17, 17, 0.9);
+            animation: typewriter_2 6s steps(48) 1s 1 normal both,
+                second_cursor 900ms steps(48) infinite;
+            -webkit-animation-delay: 1.5s;
+            animation-delay: 1.5s;
+        }
+
+        .details {
+            font-size: larger;
+        }
+
+        .title {
+            margin: 17.5%;
+        }
     }
 </style>
