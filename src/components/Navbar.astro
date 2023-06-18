@@ -36,6 +36,9 @@ const data = await response.json();
                 </NavbarElement>
                 <NavbarElement link="/#team">{data["nav.team"]}</NavbarElement>
                 <NavbarElement link="/#faq">{data["nav.faq"]}</NavbarElement>
+                <NavbarElement link="/pais">
+                    {data["nav.parents"]}
+                </NavbarElement>
                 <li class="nav-item">
                     <a class="nav-link fs-4" style="color: green;" href="/rsvp"
                         >{data["nav.rsvp"]}!</a

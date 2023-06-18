@@ -1,0 +1,37 @@
+---
+import Layout from "../../layouts/Layout.astro";
+const url =
+    "https://docs.google.com/document/d/1X7wKiRVpX6OSu6aKs5OFA8lz51QEtk2LN1AcgW5MjsA/edit";
+---
+
+<Layout>
+    <div class="d-flex justify-content-center">
+        <div>
+            <h1>Um guia para pais de <code>Hack SP</code></h1>
+            <a href={url}>Não redirecionar? Clique aqui</a>
+            <hr />
+            <h1>Parents Guide to <code>Hack SP</code></h1>
+            <a href={url}>Not Redirected? Click here</a>
+        </div>
+    </div>
+</Layout>
+
+<style>
+    * {
+        font-family: "JetBrains Mono", monospace;
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    iframe {
+        width: 100%;
+        height: 1000px;
+    }
+</style>
+
+<script defer>
+window.location.href =
+    "https://docs.google.com/document/d/1X7wKiRVpX6OSu6aKs5OFA8lz51QEtk2LN1AcgW5MjsA/edit";
+</script>
